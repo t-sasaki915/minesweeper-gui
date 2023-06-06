@@ -12,6 +12,7 @@ lazy val root = (project in file("."))
   .settings(
     name := "minesweeper-swing",
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-effect" % "3.5.0"
+      "org.typelevel" %% "cats-effect" % "3.5.0",
+      "org.scala-lang.modules" %% "scala-swing" % "3.0.0"
     )
   )
