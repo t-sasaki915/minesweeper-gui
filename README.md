@@ -1,2 +1,2 @@
-# minesweeper-swing
-Minesweeper written with Scala Swing
+# minesweeper-gui
+Minesweeper written with Scala + Awt
