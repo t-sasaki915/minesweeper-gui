@@ -1,16 +1,22 @@
 package net.st915.minesweeper
 
 import cats.effect.*
+import net.st915.scalikeawt.*
 
-import java.awt.Frame
+object Minesweeper extends ScalikeAwtApp[Model, Msg] {
 
-object Minesweeper extends IOApp {
+  override def init(args: List[String]): IO[Model] =
+    IO(Model())
 
-  override def run(args: List[String]): IO[ExitCode] =
+  override def update(msg: Msg, model: Model): IO[Model] =
+    IO(model)
+
+  override def render(model: Model): IO[Frame] =
     IO {
-      val frame = new Frame("Minesweeper")
-      frame.setSize(300, 400)
-      frame.setVisible(true)
-    } >> IO(ExitCode.Success)
+      Frame(
+        title = "Minesweeper",
+        size = Dimension(300, 400)
+      )
+    }
 
 }
