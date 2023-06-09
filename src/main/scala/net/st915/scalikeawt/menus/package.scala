@@ -12,17 +12,21 @@ package object menus {
 
   case class MenuBar[Msg](children: List[Menu[Msg]])
 
-  def menuItem[Msg](label: String, action: Msg): MenuItem[Msg] =
-    MenuItem(label, action)
+  object dsl {
 
-  def menuSeparator[Msg]: MenuSeparator[Msg] =
-    MenuSeparator()
+    def item[Msg](label: String, action: Msg): MenuItem[Msg] =
+      MenuItem(label, action)
 
-  def menu[Msg](label: String)(children: (Menu[Msg] | MenuItem[Msg] | MenuSeparator[Msg])*)
-    : Menu[Msg] =
-    Menu(label, children.toList)
+    def separator[Msg]: MenuSeparator[Msg] =
+      MenuSeparator()
 
-  def menuBar[Msg](children: Menu[Msg]*): MenuBar[Msg] =
-    MenuBar(children.toList)
+    def menu[Msg](label: String)(children: (Menu[Msg] | MenuItem[Msg] | MenuSeparator[Msg])*)
+      : Menu[Msg] =
+      Menu(label, children.toList)
+
+    def menuBar[Msg](children: Menu[Msg]*): MenuBar[Msg] =
+      MenuBar(children.toList)
+
+  }
 
 }

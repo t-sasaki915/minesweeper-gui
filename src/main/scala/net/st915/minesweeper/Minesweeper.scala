@@ -2,7 +2,6 @@ package net.st915.minesweeper
 
 import cats.effect.IO
 import net.st915.scalikeawt.*
-import net.st915.scalikeawt.menus.*
 
 object Minesweeper extends ScalikeAwtApp[Model, Msg] {
 
@@ -20,18 +19,20 @@ object Minesweeper extends ScalikeAwtApp[Model, Msg] {
       Frame(
         title = "Minesweeper",
         size = Dimension(300, 400),
-        mainMenu = Some(
+        mainMenu = Some {
+          import net.st915.scalikeawt.menus.dsl.*
+
           menuBar(
             menu("File")(
-              menuItem("Exit", Msg.Exit),
-              menuSeparator,
               menu("TEST")(
-                menuItem("AAA", Msg.Exit),
-                menuItem("BBB", Msg.Exit)
-              )
+                item("AAA", Msg.Exit),
+                item("BBB", Msg.Exit)
+              ),
+              separator,
+              item("Exit", Msg.Exit)
             )
           )
-        )
+        }
       )
     }
 
