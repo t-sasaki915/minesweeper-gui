@@ -14,26 +14,24 @@ object Minesweeper extends ScalikeAwtApp[Model, Msg] {
         System.exit(0)
         IO(model)
 
-  override def render(model: Model): IO[Frame[Msg]] =
-    IO {
-      Frame(
-        title = "Minesweeper",
-        size = Dimension(300, 400),
-        mainMenu = Some {
-          import net.st915.scalikeawt.menus.dsl.*
+  override def render(model: Model): Frame[Msg] =
+    Frame(
+      title = "Minesweeper",
+      size = Dimension(300, 400),
+      mainMenu = Some {
+        import net.st915.scalikeawt.menus.dsl.*
 
-          menuBar(
-            menu("File")(
-              menu("TEST")(
-                item("AAA", Msg.Exit),
-                item("BBB", Msg.Exit)
-              ),
-              separator,
-              item("Exit", Msg.Exit)
-            )
+        menuBar(
+          menu("File")(
+            menu("TEST")(
+              item("AAA", Msg.Exit),
+              item("BBB", Msg.Exit)
+            ),
+            separator,
+            item("Exit", Msg.Exit)
           )
-        }
-      )
-    }
+        )
+      }
+    )
 
 }

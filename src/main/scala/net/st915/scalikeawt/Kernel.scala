@@ -11,7 +11,7 @@ private[scalikeawt] object Kernel {
   case class Program[Model, Msg](
     initializer: List[String] => IO[Model],
     updater: (Msg, Model) => IO[Model],
-    renderer: Model => IO[Frame[Msg]]
+    renderer: Model => Frame[Msg]
   )
 
   val mainFrame: java.awt.Frame =
@@ -29,8 +29,7 @@ private[scalikeawt] object Kernel {
     for {
       inst <- IO { instance.get.asInstanceOf[Program[Model, Msg]] }
       newModel <- inst.updater(msg, model)
-      newFrame <- inst.renderer(newModel)
-      _ <- updateFrame(newFrame)
+      _ <- updateFrame(inst.renderer(model))
     } yield ()
 
   def updateFrame[Model, Msg](newFrame: Frame[Msg]): IO[Unit] =

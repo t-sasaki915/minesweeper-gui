@@ -8,13 +8,12 @@ trait ScalikeAwtApp[Model, Msg] extends IOApp {
 
   def update(msg: Msg, model: Model): IO[Model]
 
-  def render(model: Model): IO[Frame[Msg]]
+  def render(model: Model): Frame[Msg]
 
   override final def run(args: List[String]): IO[ExitCode] =
     for {
       initModel <- init(args)
-      initFrame <- render(initModel)
-      _ <- Kernel.updateFrame(initFrame)
+      _ <- Kernel.updateFrame(render(initModel))
       _ <- IO { Kernel.mainFrame.setVisible(true) }
       instance <- IO {
         Kernel.Program(
