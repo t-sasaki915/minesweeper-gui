@@ -8,7 +8,7 @@ trait ScalikeAwtApp[Model, Msg] extends IOApp {
 
   def update(msg: Msg, model: Model): IO[Model]
 
-  def render(model: Model): IO[Frame[Model, Msg]]
+  def render(model: Model): IO[Frame[Msg]]
 
   override final def run(args: List[String]): IO[ExitCode] =
     for {

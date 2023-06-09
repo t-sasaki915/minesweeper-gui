@@ -2,6 +2,7 @@ package net.st915.minesweeper
 
 import cats.effect.IO
 import net.st915.scalikeawt.*
+import net.st915.scalikeawt.menus.*
 
 object Minesweeper extends ScalikeAwtApp[Model, Msg] {
 
@@ -14,15 +15,20 @@ object Minesweeper extends ScalikeAwtApp[Model, Msg] {
         System.exit(0)
         IO(model)
 
-  override def render(model: Model): IO[Frame[Model, Msg]] =
+  override def render(model: Model): IO[Frame[Msg]] =
     IO {
       Frame(
         title = "Minesweeper",
         size = Dimension(300, 400),
         mainMenu = Some(
-          MenuBar()(
-            Menu("File")(
-              MenuItem("Exit", _ => IO(Msg.Exit), model)
+          menuBar(
+            menu("File")(
+              menuItem("Exit", Msg.Exit),
+              menuSeparator,
+              menu("TEST")(
+                menuItem("AAA", Msg.Exit),
+                menuItem("BBB", Msg.Exit)
+              )
             )
           )
         )

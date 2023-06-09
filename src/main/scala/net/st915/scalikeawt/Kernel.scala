@@ -1,6 +1,7 @@
 package net.st915.scalikeawt
 
 import cats.effect.IO
+import net.st915.scalikeawt.menus.MenuConverter
 
 import java.awt.event.{WindowAdapter, WindowEvent}
 import scala.util.chaining.*
@@ -10,7 +11,7 @@ private[scalikeawt] object Kernel {
   case class Program[Model, Msg](
     initializer: List[String] => IO[Model],
     updater: (Msg, Model) => IO[Model],
-    renderer: Model => IO[Frame[Model, Msg]]
+    renderer: Model => IO[Frame[Msg]]
   )
 
   val mainFrame: java.awt.Frame =
@@ -32,7 +33,7 @@ private[scalikeawt] object Kernel {
       _ <- updateFrame(newFrame)
     } yield ()
 
-  def updateFrame[Model, Msg](newFrame: Frame[Model, Msg]): IO[Unit] =
+  def updateFrame[Model, Msg](newFrame: Frame[Msg]): IO[Unit] =
     IO {
       mainFrame
         .tap(_.setTitle(newFrame.title))
@@ -40,7 +41,7 @@ private[scalikeawt] object Kernel {
         .tap { nativeFrame =>
           newFrame.mainMenu match
             case Some(menuBar) =>
-              nativeFrame.setMenuBar(new MenuConverter[Model, Msg].convertMenuBar(menuBar))
+              nativeFrame.setMenuBar(new MenuConverter[Msg].convertMenuBar(menuBar))
 
             case None =>
         }

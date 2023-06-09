@@ -1,7 +1,9 @@
 package net.st915.scalikeawt
 
-case class Frame[Model, Msg](
+import net.st915.scalikeawt.menus.MenuBar
+
+case class Frame[Msg](
   title: String,
   size: Dimension,
-  mainMenu: Option[MenuBar[Model, Msg]] = None
+  mainMenu: Option[MenuBar[Msg]] = None
 )
