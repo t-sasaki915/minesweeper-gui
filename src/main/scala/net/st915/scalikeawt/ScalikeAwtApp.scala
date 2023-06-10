@@ -5,8 +5,7 @@ import cats.effect.*
 object ScalikeAwtApp {
 
   def exitWithModel[Model](exitCode: ExitCode)(using Model): IO[Model] =
-    System.exit(exitCode.code)
-    IO(summon)
+    IO(System.exit(exitCode.code)) >> IO(summon)
 
 }
 
