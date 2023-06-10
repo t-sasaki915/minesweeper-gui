@@ -8,10 +8,10 @@ import scala.util.chaining.*
 
 private[scalikeawt] object Kernel {
 
-  case class Program[Model, Msg](
-    initializer: List[String] => IO[Model],
-    updater: (Msg, Model) => IO[Model]
-  )(val renderer: Model ?=> Frame[Model, Msg])
+  case class Program[Model, Msg](initializer: List[String] => IO[Model])(
+    val updater: Msg => Model ?=> IO[Model],
+    val renderer: Model ?=> Frame[Model, Msg]
+  )
 
   val mainFrame: java.awt.Frame =
     new java.awt.Frame("")
@@ -28,7 +28,7 @@ private[scalikeawt] object Kernel {
     for {
       inst <- IO { instance.get.asInstanceOf[Program[Model, Msg]] }
       given Model <- IO(model)
-      newModel <- inst.updater(msg, model)
+      newModel <- inst.updater(msg)
       _ <- updateFrame(inst.renderer)
     } yield ()
 

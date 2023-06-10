@@ -1,6 +1,6 @@
 package net.st915.minesweeper
 
-import cats.effect.IO
+import cats.effect.{ExitCode, IO}
 import net.st915.scalikeawt.*
 
 object Minesweeper extends ScalikeAwtApp[Model, Msg] {
@@ -8,13 +8,12 @@ object Minesweeper extends ScalikeAwtApp[Model, Msg] {
   override def init(args: List[String]): IO[Model] =
     IO(Model())
 
-  override def update(msg: Msg, model: Model): IO[Model] =
+  override def update(msg: Msg)(using Model): IO[Model] =
     msg match
       case Msg.Exit =>
-        System.exit(0)
-        IO(model)
+        ScalikeAwtApp.exitWithModel(ExitCode.Success)
 
-  override def render(using model: Model): Frame[Model, Msg] =
+  override def render(using Model): Frame[Model, Msg] =
     Frame(
       title = "Minesweeper",
       size = Dimension(300, 400),
