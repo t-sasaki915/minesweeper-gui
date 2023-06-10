@@ -28,7 +28,7 @@ private[scalikeawt] object Kernel {
     for {
       inst <- IO { instance.get.asInstanceOf[Program[Model, Msg]] }
       given Model <- IO(model)
-      newModel <- inst.updater(msg)
+      given Model <- inst.updater(msg)
       _ <- updateFrame(inst.renderer)
     } yield ()
 
@@ -44,6 +44,7 @@ private[scalikeawt] object Kernel {
 
             case None =>
         }
+        .tap(_.repaint())
     }
 
 }
