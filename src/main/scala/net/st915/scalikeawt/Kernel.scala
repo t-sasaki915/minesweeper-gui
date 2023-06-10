@@ -10,9 +10,8 @@ private[scalikeawt] object Kernel {
 
   case class Program[Model, Msg](
     initializer: List[String] => IO[Model],
-    updater: (Msg, Model) => IO[Model],
-    renderer: Model => Frame[Msg]
-  )
+    updater: (Msg, Model) => IO[Model]
+  )(val renderer: Model ?=> Frame[Model, Msg])
 
   val mainFrame: java.awt.Frame =
     new java.awt.Frame("")
@@ -28,11 +27,12 @@ private[scalikeawt] object Kernel {
   def performMsg[Model, Msg](msg: Msg, model: Model): IO[Unit] =
     for {
       inst <- IO { instance.get.asInstanceOf[Program[Model, Msg]] }
+      given Model <- IO(model)
       newModel <- inst.updater(msg, model)
-      _ <- updateFrame(inst.renderer(model))
+      _ <- updateFrame(inst.renderer)
     } yield ()
 
-  def updateFrame[Model, Msg](newFrame: Frame[Msg]): IO[Unit] =
+  def updateFrame[Model, Msg](newFrame: Frame[Model, Msg]): IO[Unit] =
     IO {
       mainFrame
         .tap(_.setTitle(newFrame.title))
@@ -40,7 +40,7 @@ private[scalikeawt] object Kernel {
         .tap { nativeFrame =>
           newFrame.mainMenu match
             case Some(menuBar) =>
-              nativeFrame.setMenuBar(new MenuConverter[Msg].convertMenuBar(menuBar))
+              nativeFrame.setMenuBar(new MenuConverter[Model, Msg].convertMenuBar(menuBar))
 
             case None =>
         }

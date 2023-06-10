@@ -14,7 +14,7 @@ object Minesweeper extends ScalikeAwtApp[Model, Msg] {
         System.exit(0)
         IO(model)
 
-  override def render(model: Model): Frame[Msg] =
+  override def render(using model: Model): Frame[Model, Msg] =
     Frame(
       title = "Minesweeper",
       size = Dimension(300, 400),
