@@ -5,5 +5,6 @@ import net.st915.scalikeawt.menus.MenuBar
 case class Frame[Model, Msg](
   title: String,
   size: Dimension,
-  mainMenu: Option[MenuBar[Model, Msg]] = None
+  mainMenu: Option[MenuBar[Model, Msg]] = None,
+  closable: Boolean = true
 )

@@ -15,12 +15,6 @@ private[scalikeawt] object Kernel {
 
   val mainFrame: java.awt.Frame =
     new java.awt.Frame("")
-      .tap(_.addWindowListener(new WindowAdapter {
-
-        override def windowClosing(e: WindowEvent): Unit =
-          System.exit(0)
-
-      }))
 
   var instance: Option[Program[_, _]] = None
 
@@ -38,13 +32,24 @@ private[scalikeawt] object Kernel {
         .tap(_.setTitle(newFrame.title))
         .tap(_.setSize(newFrame.size.width, newFrame.size.height))
         .tap { nativeFrame =>
+          nativeFrame.getWindowListeners.foreach {
+            nativeFrame.removeWindowListener
+          }
+        }
+        .tap(_.addWindowListener(new WindowAdapter {
+
+          override def windowClosing(e: WindowEvent): Unit =
+            if newFrame.closable then
+              System.exit(0)
+
+        }))
+        .tap { nativeFrame =>
           newFrame.mainMenu match
             case Some(menuBar) =>
               nativeFrame.setMenuBar(new MenuConverter[Model, Msg].convertMenuBar(menuBar))
 
             case None =>
         }
-        .tap(_.repaint())
     }
 
 }
