@@ -29,8 +29,8 @@ object Minesweeper extends ScalikeAwtApp[Model, Msg] {
         menuBar(
           menu("File")(
             menu("TEST")(
-              item("AAA", Msg.MenuClick1),
-              item("BBB", Msg.MenuClick2)
+              item("AAA", Msg.MenuClick1, model.test != "1234"),
+              item("BBB", Msg.MenuClick2, model.test != "!@#$")
             ),
             separator,
             item("Exit", Msg.Exit)

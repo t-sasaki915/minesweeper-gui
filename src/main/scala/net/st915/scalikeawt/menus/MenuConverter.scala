@@ -9,6 +9,7 @@ private[scalikeawt] case class MenuConverter[Model, Msg]() {
   private def convertMenuItem(menuItem: MenuItem[Model, Msg]): java.awt.MenuItem =
     new java.awt.MenuItem()
       .tap(_.setLabel(menuItem.label))
+      .tap(_.setEnabled(menuItem.enabled))
       .tap(_.addActionListener(_ => {
         import cats.effect.unsafe.implicits.global
 
@@ -18,6 +19,7 @@ private[scalikeawt] case class MenuConverter[Model, Msg]() {
   private def convertMenu(menu: Menu[Model, Msg]): java.awt.Menu =
     new java.awt.Menu()
       .tap(_.setLabel(menu.label))
+      .tap(_.setEnabled(menu.enabled))
       .tap { nativeMenu =>
         menu.children.foreach {
           case x: MenuItem[Model, Msg] =>
