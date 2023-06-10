@@ -1,3 +1,3 @@
 package net.st915.minesweeper
 
-case class Model(test: String)
+case class Model(difficulty: Difficulty)

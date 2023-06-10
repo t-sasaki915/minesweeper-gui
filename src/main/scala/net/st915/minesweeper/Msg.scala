@@ -1,13 +1,9 @@
 package net.st915.minesweeper
 
-object Msg {
+enum Msg {
 
-  case object MenuClick1 extends Msg
+  case UpdateDifficulty(newDifficulty: Difficulty) extends Msg
 
-  case object MenuClick2 extends Msg
-
-  case object Exit extends Msg
+  case Exit extends Msg
 
 }
-
-sealed trait Msg
