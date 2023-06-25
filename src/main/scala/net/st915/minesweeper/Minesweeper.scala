@@ -18,7 +18,7 @@ object Minesweeper extends ScalikeAwtApp[Model, Msg] {
         IO(model.copy(difficulty = newDifficulty))
 
       case Msg.Exit =>
-        ScalikeAwtApp.exitWithModel(ExitCode.Success)
+        ScalikeAwtApp.exitUpdate(ExitCode.Success)
 
   override def render(using model: Model): Frame[Model, Msg] =
     Frame(
