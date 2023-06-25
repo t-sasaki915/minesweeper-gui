@@ -8,7 +8,7 @@ import scala.util.chaining.*
 
 private[scalikeawt] object Kernel {
 
-  case class Program[Model, Msg](initializer: List[String] => IO[Model])(
+  case class Program[Model, Msg](initializer: List[String] => Model)(
     val updater: Msg => Model ?=> IO[Model],
     val renderer: Model ?=> Frame[Model, Msg]
   )

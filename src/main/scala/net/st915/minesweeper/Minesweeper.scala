@@ -5,12 +5,8 @@ import net.st915.scalikeawt.*
 
 object Minesweeper extends ScalikeAwtApp[Model, Msg] {
 
-  override def init(args: List[String]): IO[Model] =
-    IO {
-      Model(difficulty =
-        Difficulty.default
-      )
-    }
+  override def init(args: List[String]): Model =
+    Model(Difficulty.default)
 
   override def update(msg: Msg)(using model: Model): IO[Model] =
     msg match

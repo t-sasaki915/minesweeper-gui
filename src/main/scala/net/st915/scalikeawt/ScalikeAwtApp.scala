@@ -11,19 +11,25 @@ object ScalikeAwtApp {
 
 trait ScalikeAwtApp[Model, Msg] extends IOApp {
 
-  def init(args: List[String]): IO[Model]
+  def init(args: List[String]): Model
 
   def update(msg: Msg)(using model: Model): IO[Model]
 
   def render(using model: Model): Frame[Model, Msg]
 
-  override final def run(args: List[String]): IO[ExitCode] =
+  override final def run(args: List[String]): IO[ExitCode] = {
+    given Model = init(args)
+
     for {
-      given Model <- init(args)
       _ <- Kernel.updateFrame(render)
-      _ <- IO { Kernel.mainFrame.setVisible(true) }
+      _ <- IO {
+        Kernel.mainFrame.setVisible(true)
+      }
       instance <- IO(Kernel.Program(init)(update, render))
-      _ <- IO { Kernel.instance = Some(instance) }
+      _ <- IO {
+        Kernel.instance = Some(instance)
+      }
     } yield ExitCode.Success
+  }
 
 }
