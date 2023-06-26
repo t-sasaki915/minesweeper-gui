@@ -3,14 +3,15 @@ package net.st915.scalikeawt.system
 import net.st915.scalikeawt.Color
 import net.st915.scalikeawt.graphics.*
 
+import java.awt.event.MouseEvent
 import scala.util.chaining.*
 
-private[scalikeawt] case class CanvasConverter() {
+private[scalikeawt] case class CanvasConverter[Model, Msg]() {
 
   private def updateColor(color: Color, g: java.awt.Graphics): Unit =
     g.setColor(new java.awt.Color(color.r, color.g, color.b))
 
-  def convertCanvas(canvas: Canvas): java.awt.Canvas =
+  def convertCanvas(canvas: Canvas[Model, Msg]): java.awt.Canvas =
     new java.awt.Canvas() {
 
       override def paint(g: java.awt.Graphics): Unit =
@@ -65,5 +66,17 @@ private[scalikeawt] case class CanvasConverter() {
         }
 
     }.tap(_.setSize(canvas.size.width, canvas.size.height))
+      .tap { nativeCanvas =>
+        if canvas.onClick.nonEmpty then
+          nativeCanvas.addMouseListener(new java.awt.event.MouseAdapter() {
+
+            override def mouseClicked(e: MouseEvent): Unit = {
+              import cats.effect.unsafe.implicits.global
+
+              Kernel.performMsg(canvas.onClick.get, canvas.model).unsafeRunSync()
+            }
+
+          })
+      }
 
 }

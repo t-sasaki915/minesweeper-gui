@@ -4,7 +4,12 @@ package object graphics {
 
   trait Element
 
-  case class Canvas(override val size: Dimension, elements: List[Element]) extends Frame.Component
+  case class Canvas[Model, Msg](
+    override val size: Dimension,
+    elements: List[Element],
+    onClick: Option[Msg],
+    model: Model
+  ) extends Frame.Component
 
   case class Line(
     c1: Coordinate,
@@ -64,8 +69,11 @@ package object graphics {
 
   object dsl {
 
-    def canvas(size: Dimension)(elements: Element*): Canvas =
-      Canvas(size, elements.toList)
+    def canvas[Model, Msg](
+      size: Dimension,
+      onClick: Option[Msg] = None
+    )(elements: Element*)(using model: Model): Canvas[Model, Msg] =
+      Canvas[Model, Msg](size, elements.toList, onClick, model)
 
     def line(
       c1: Coordinate,

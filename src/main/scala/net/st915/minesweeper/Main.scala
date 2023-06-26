@@ -26,7 +26,7 @@ object Main extends ScalikeAwtApp[Model, Msg] {
         Coordinate(0, 0) -> {
           import net.st915.scalikeawt.graphics.dsl.*
 
-          canvas(Dimension(100, 100))(
+          canvas[Model, Msg](Dimension(100, 100))(
             rect(
               coord = Coordinate(0, 0),
               size = Dimension(50, 50),
@@ -44,7 +44,10 @@ object Main extends ScalikeAwtApp[Model, Msg] {
         Coordinate(100, 100) -> {
           import net.st915.scalikeawt.graphics.dsl.*
 
-          canvas(Dimension(100, 100))(
+          canvas[Model, Msg](
+            size = Dimension(100, 100),
+            onClick = Some(Msg.UpdateDifficulty(Difficulty.Easy))
+          )(
             rect(
               coord = Coordinate(0, 0),
               size = Dimension(50, 50),

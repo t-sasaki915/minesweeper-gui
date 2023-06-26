@@ -44,7 +44,7 @@ private[scalikeawt] object Kernel {
                 case (coord, component) =>
                   val nativeComponent = (
                     component match
-                      case x: Canvas =>
+                      case x: Canvas[_, _] =>
                         CanvasConverter().convertCanvas(x)
                   ).tap(_.setBounds(coord.x, coord.y, component.size.width, component.size.height))
 
@@ -69,7 +69,7 @@ private[scalikeawt] object Kernel {
         .tap { nativeFrame =>
           newFrame.mainMenu match
             case Some(menuBar) =>
-              nativeFrame.setMenuBar(new MenuConverter[Model, Msg].convertMenuBar(menuBar))
+              nativeFrame.setMenuBar(MenuConverter().convertMenuBar(menuBar))
 
             case None =>
         }
