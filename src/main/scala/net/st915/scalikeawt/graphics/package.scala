@@ -83,7 +83,7 @@ package object graphics {
       coord: Coordinate,
       size: Dimension,
       color: Color = Color.default,
-      fill: Boolean = false
+      fill: Boolean = true
     ): Rect = Rect(coord, size, color, fill)
 
     def roundRect(
@@ -91,21 +91,21 @@ package object graphics {
       size: Dimension,
       arc: Dimension,
       color: Color = Color.default,
-      fill: Boolean = false
+      fill: Boolean = true
     ): RoundRect = RoundRect(coord, size, arc, color, fill)
 
     def oval(
       coord: Coordinate,
       size: Dimension,
       color: Color = Color.default,
-      fill: Boolean = false
+      fill: Boolean = true
     ): Oval = Oval(coord, size, color, fill)
 
     def circle(
       coord: Coordinate,
       r: Int,
       color: Color = Color.default,
-      fill: Boolean = false
+      fill: Boolean = true
     ): Oval = Oval(Coordinate(coord.x - r, coord.y - r), Dimension(r * 2, r * 2), color, fill)
 
     def arc(
@@ -114,7 +114,7 @@ package object graphics {
       startAngle: Int,
       arcAngle: Int,
       color: Color = Color.default,
-      fill: Boolean = false
+      fill: Boolean = true
     ): Arc = Arc(coord, size, startAngle, arcAngle, color, fill)
 
     def polyline(
@@ -123,7 +123,7 @@ package object graphics {
 
     def polygon(
       color: Color = Color.default,
-      fill: Boolean = false
+      fill: Boolean = true
     )(points: Coordinate*): Polygon = Polygon(points.toList, color, fill)
 
     def text(

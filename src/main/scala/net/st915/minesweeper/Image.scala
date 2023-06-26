@@ -11,16 +11,16 @@ object Image {
 
     override val draw: List[Element] =
       List(
-        circle(coord = Coordinate(15, 15), r = 11, fill = true),
-        rect(coord = Coordinate(14, 0), size = Dimension(2, 30), fill = true),
-        rect(coord = Coordinate(0, 14), size = Dimension(30, 2), fill = true),
-        polygon(fill = true)(
+        circle(Coordinate(15, 15), 11),
+        rect(Coordinate(14, 0), Dimension(2, 30)),
+        rect(Coordinate(0, 14), Dimension(30, 2)),
+        polygon()(
           Coordinate(5, 6),
           Coordinate(6, 5),
           Coordinate(25, 24),
           Coordinate(24, 25)
         ),
-        polygon(fill = true)(
+        polygon()(
           Coordinate(25, 6),
           Coordinate(24, 5),
           Coordinate(5, 24),
@@ -34,14 +34,14 @@ object Image {
 
     override val draw: List[Element] =
       List(
-        polygon(fill = true)(
+        polygon()(
           Coordinate(0, 22),
           Coordinate(5, 15),
           Coordinate(17, 15),
           Coordinate(22, 22)
         ),
-        rect(coord = Coordinate(10, 1), size = Dimension(2, 14), fill = true),
-        polygon(color = Color.Red, fill = true)(
+        rect(Coordinate(10, 1), Dimension(2, 14)),
+        polygon(Color.Red)(
           Coordinate(10, 1),
           Coordinate(10, 10),
           Coordinate(1, 5)
