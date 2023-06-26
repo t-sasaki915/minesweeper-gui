@@ -29,6 +29,13 @@ object Main extends ScalikeAwtApp[Model, Msg] {
           canvas[Model, Msg](Dimension(30, 30))(
             Image.MineIcon.draw: _*
           )
+        },
+        Coordinate(30, 0) -> {
+          import net.st915.scalikeawt.graphics.dsl.*
+
+          canvas[Model, Msg](Dimension(22, 22))(
+            Image.FlagIcon.draw: _*
+          )
         }
       ),
       mainMenu = Some {
