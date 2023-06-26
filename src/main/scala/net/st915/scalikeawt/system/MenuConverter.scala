@@ -13,7 +13,7 @@ private[scalikeawt] case class MenuConverter[Model, Msg]() {
       .tap(_.addActionListener(_ => {
         import cats.effect.unsafe.implicits.global
 
-        Kernel.performMsg(menuItem.action, menuItem.model).unsafeRunSync()
+        Kernel.performMsg(menuItem.onClick, menuItem.model).unsafeRunSync()
       }))
 
   private def convertMenu(menu: Menu[Model, Msg]): java.awt.Menu =

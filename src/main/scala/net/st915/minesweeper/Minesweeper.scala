@@ -33,7 +33,7 @@ object Minesweeper extends ScalikeAwtApp[Model, Msg] {
             Difficulty.all.map { diff =>
               item(
                 label = diff.name,
-                action = Msg.UpdateDifficulty(diff),
+                onClick = Msg.UpdateDifficulty(diff),
                 enabled = model.difficulty != diff
               )
             }: _*

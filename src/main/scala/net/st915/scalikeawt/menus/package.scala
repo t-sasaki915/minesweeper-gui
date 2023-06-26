@@ -2,7 +2,7 @@ package net.st915.scalikeawt
 
 package object menus {
 
-  case class MenuItem[Model, Msg](label: String, action: Msg, model: Model, enabled: Boolean)
+  case class MenuItem[Model, Msg](label: String, onClick: Msg, model: Model, enabled: Boolean)
 
   case class MenuSeparator[Model, Msg]()
 
@@ -16,9 +16,9 @@ package object menus {
 
   object dsl {
 
-    def item[Model, Msg](label: String, action: Msg, enabled: Boolean = true)(using
+    def item[Model, Msg](label: String, onClick: Msg, enabled: Boolean = true)(using
     model: Model): MenuItem[Model, Msg] =
-      MenuItem(label, action, model, enabled)
+      MenuItem(label, onClick, model, enabled)
 
     def separator[Model, Msg]: MenuSeparator[Model, Msg] =
       MenuSeparator()
