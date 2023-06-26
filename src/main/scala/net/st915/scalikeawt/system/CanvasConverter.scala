@@ -48,16 +48,16 @@ private[scalikeawt] case class CanvasConverter[Model, Msg]() {
             else
               g.drawArc(coord.x, coord.y, size.width, size.height, startAngle, arcAngle)
 
-          case Polyline(points, nPoints, color) =>
+          case Polyline(points, color) =>
             updateColor(color, g)
-            g.drawPolyline(points.map(_.x).toArray, points.map(_.y).toArray, nPoints)
+            g.drawPolyline(points.map(_.x).toArray, points.map(_.y).toArray, points.size)
 
-          case Polygon(points, nPoints, color, fill) =>
+          case Polygon(points, color, fill) =>
             updateColor(color, g)
             if fill then
-              g.fillPolygon(points.map(_.x).toArray, points.map(_.y).toArray, nPoints)
+              g.fillPolygon(points.map(_.x).toArray, points.map(_.y).toArray, points.size)
             else
-              g.drawPolygon(points.map(_.x).toArray, points.map(_.y).toArray, nPoints)
+              g.drawPolygon(points.map(_.x).toArray, points.map(_.y).toArray, points.size)
 
           case Text(content, coord, color) =>
             updateColor(color, g)

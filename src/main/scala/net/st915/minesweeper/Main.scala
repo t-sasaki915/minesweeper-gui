@@ -26,40 +26,8 @@ object Main extends ScalikeAwtApp[Model, Msg] {
         Coordinate(0, 0) -> {
           import net.st915.scalikeawt.graphics.dsl.*
 
-          canvas[Model, Msg](Dimension(100, 100))(
-            rect(
-              coord = Coordinate(0, 0),
-              size = Dimension(50, 50),
-              color = if model.difficulty != Difficulty.Hard then Color.Red else Color.Blue,
-              fill = true
-            ),
-            rect(
-              coord = Coordinate(50, 50),
-              size = Dimension(50, 50),
-              color = if model.difficulty != Difficulty.Hard then Color.Blue else Color.Red,
-              fill = true
-            )
-          )
-        },
-        Coordinate(100, 100) -> {
-          import net.st915.scalikeawt.graphics.dsl.*
-
-          canvas[Model, Msg](
-            size = Dimension(100, 100),
-            onClick = Some(Msg.UpdateDifficulty(Difficulty.Easy))
-          )(
-            rect(
-              coord = Coordinate(0, 0),
-              size = Dimension(50, 50),
-              color = if model.difficulty != Difficulty.Hard then Color.Yellow else Color.Green,
-              fill = true
-            ),
-            rect(
-              coord = Coordinate(50, 50),
-              size = Dimension(50, 50),
-              color = if model.difficulty != Difficulty.Hard then Color.Green else Color.Yellow,
-              fill = true
-            )
+          canvas[Model, Msg](Dimension(30, 30))(
+            Image.MineIcon.draw: _*
           )
         }
       ),

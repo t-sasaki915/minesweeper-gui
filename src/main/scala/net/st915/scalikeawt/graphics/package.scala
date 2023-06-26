@@ -50,13 +50,11 @@ package object graphics {
 
   case class Polyline(
     points: List[Coordinate],
-    nPoints: Int,
     color: Color
   ) extends Element
 
   case class Polygon(
     points: List[Coordinate],
-    nPoints: Int,
     color: Color,
     fill: Boolean
   ) extends Element
@@ -103,6 +101,13 @@ package object graphics {
       fill: Boolean = false
     ): Oval = Oval(coord, size, color, fill)
 
+    def circle(
+      coord: Coordinate,
+      r: Int,
+      color: Color = Color.default,
+      fill: Boolean = false
+    ): Oval = Oval(Coordinate(coord.x - r, coord.y - r), Dimension(r * 2, r * 2), color, fill)
+
     def arc(
       coord: Coordinate,
       size: Dimension,
@@ -113,17 +118,13 @@ package object graphics {
     ): Arc = Arc(coord, size, startAngle, arcAngle, color, fill)
 
     def polyline(
-      points: List[Coordinate],
-      nPoints: Int,
       color: Color = Color.default
-    ): Polyline = Polyline(points, nPoints, color)
+    )(points: Coordinate*): Polyline = Polyline(points.toList, color)
 
     def polygon(
-      points: List[Coordinate],
-      nPoints: Int,
       color: Color = Color.default,
       fill: Boolean = false
-    ): Polygon = Polygon(points, nPoints, color, fill)
+    )(points: Coordinate*): Polygon = Polygon(points.toList, color, fill)
 
     def text(
       content: String,
