@@ -2,6 +2,7 @@ package net.st915.scalikeawt.system
 
 import cats.effect.IO
 import net.st915.scalikeawt.Frame
+import net.st915.scalikeawt.graphics.Canvas
 
 import java.awt.event.{WindowAdapter, WindowEvent}
 import scala.util.chaining.*
@@ -15,6 +16,7 @@ private[scalikeawt] object Kernel {
 
   val mainFrame: java.awt.Frame =
     new java.awt.Frame("")
+      .tap(_.add(new java.awt.Panel()))
 
   var instance: Option[Program[_, _]] = None
 
@@ -32,6 +34,24 @@ private[scalikeawt] object Kernel {
         .tap(_.setTitle(newFrame.title))
         .tap(_.setSize(newFrame.size.width, newFrame.size.height))
         .tap(_.setResizable(newFrame.resizable))
+        .tap(_.remove(0))
+        .tap(_.add {
+          new java.awt.Panel()
+            .tap(_.setSize(newFrame.size.width, newFrame.size.height))
+            .tap(_.setLayout(null))
+            .tap { panel =>
+              newFrame.components.foreach {
+                case (coord, component) =>
+                  val nativeComponent = (
+                    component match
+                      case x: Canvas =>
+                        CanvasConverter().convertCanvas(x)
+                  ).tap(_.setBounds(coord.x, coord.y, component.size.width, component.size.height))
+
+                  panel.add(nativeComponent)
+              }
+            }
+        })
         .tap { nativeFrame =>
           nativeFrame.getWindowListeners.foreach {
             nativeFrame.removeWindowListener

@@ -62,7 +62,6 @@ private[scalikeawt] case class CanvasConverter() {
             updateColor(color, g)
             g.drawString(content, coord.x, coord.y)
 
-          case _ =>
         }
 
     }.tap(_.setSize(canvas.size.width, canvas.size.height))

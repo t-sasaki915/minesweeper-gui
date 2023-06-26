@@ -4,7 +4,7 @@ package object graphics {
 
   trait Element
 
-  case class Canvas(size: Dimension, elements: List[Element])
+  case class Canvas(override val size: Dimension, elements: List[Element]) extends Frame.Component
 
   case class Line(
     c1: Coordinate,
