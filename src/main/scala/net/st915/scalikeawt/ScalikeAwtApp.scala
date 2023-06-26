@@ -3,13 +3,6 @@ package net.st915.scalikeawt
 import cats.effect.*
 import net.st915.scalikeawt.system.Kernel
 
-object ScalikeAwtApp {
-
-  def exitUpdate[Model](exitCode: ExitCode)(using Model): IO[Model] =
-    IO(System.exit(exitCode.code)) >> IO(summon)
-
-}
-
 trait ScalikeAwtApp[Model, Msg] extends IOApp {
 
   def init(args: List[String]): Model
