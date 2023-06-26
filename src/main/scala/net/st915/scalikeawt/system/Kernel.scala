@@ -1,7 +1,7 @@
-package net.st915.scalikeawt
+package net.st915.scalikeawt.system
 
 import cats.effect.IO
-import net.st915.scalikeawt.menus.MenuConverter
+import net.st915.scalikeawt.Frame
 
 import java.awt.event.{WindowAdapter, WindowEvent}
 import scala.util.chaining.*

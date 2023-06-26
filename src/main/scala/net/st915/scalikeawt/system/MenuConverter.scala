@@ -1,6 +1,6 @@
-package net.st915.scalikeawt.menus
+package net.st915.scalikeawt.system
 
-import net.st915.scalikeawt.Kernel
+import net.st915.scalikeawt.menus.*
 
 import scala.util.chaining.*
 

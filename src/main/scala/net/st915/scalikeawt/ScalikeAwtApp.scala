@@ -1,6 +1,7 @@
 package net.st915.scalikeawt
 
 import cats.effect.*
+import net.st915.scalikeawt.system.Kernel
 
 object ScalikeAwtApp {
 
