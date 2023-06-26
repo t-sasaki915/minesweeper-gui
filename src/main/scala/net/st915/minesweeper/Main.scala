@@ -3,7 +3,7 @@ package net.st915.minesweeper
 import cats.effect.{ExitCode, IO}
 import net.st915.scalikeawt.*
 
-object Minesweeper extends ScalikeAwtApp[Model, Msg] {
+object Main extends ScalikeAwtApp[Model, Msg] {
 
   override def init(args: List[String]): Model =
     Model(Difficulty.default)
@@ -18,7 +18,7 @@ object Minesweeper extends ScalikeAwtApp[Model, Msg] {
 
   override def render(using model: Model): Frame[Model, Msg] =
     Frame(
-      title = s"Minesweeper - ${model.difficulty.name}",
+      title = s"${model.difficulty.name} Minesweeper",
       size = Dimension(300, 400),
       resizable = false,
       onCloseButtonClick = Msg.Exit,
