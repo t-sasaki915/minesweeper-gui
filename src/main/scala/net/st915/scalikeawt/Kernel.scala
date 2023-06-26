@@ -23,14 +23,15 @@ private[scalikeawt] object Kernel {
       inst <- IO { instance.get.asInstanceOf[Program[Model, Msg]] }
       given Model <- IO(model)
       given Model <- inst.updater(msg)
-      _ <- updateFrame(inst.renderer)
+      _ <- updateFrame(inst.renderer, model)
     } yield ()
 
-  def updateFrame[Model, Msg](newFrame: Frame[Model, Msg]): IO[Unit] =
+  def updateFrame[Model, Msg](newFrame: Frame[Model, Msg], model: Model): IO[Unit] =
     IO {
       mainFrame
         .tap(_.setTitle(newFrame.title))
         .tap(_.setSize(newFrame.size.width, newFrame.size.height))
+        .tap(_.setResizable(newFrame.resizable))
         .tap { nativeFrame =>
           nativeFrame.getWindowListeners.foreach {
             nativeFrame.removeWindowListener
@@ -38,9 +39,11 @@ private[scalikeawt] object Kernel {
         }
         .tap(_.addWindowListener(new WindowAdapter {
 
-          override def windowClosing(e: WindowEvent): Unit =
-            if newFrame.closable then
-              System.exit(0)
+          override def windowClosing(e: WindowEvent): Unit = {
+            import cats.effect.unsafe.implicits.global
+
+            performMsg(newFrame.onCloseButtonClick, model).unsafeRunSync()
+          }
 
         }))
         .tap { nativeFrame =>

@@ -21,7 +21,7 @@ trait ScalikeAwtApp[Model, Msg] extends IOApp {
     given Model = init(args)
 
     for {
-      _ <- Kernel.updateFrame(render)
+      _ <- Kernel.updateFrame(render, summon)
       _ <- IO {
         Kernel.mainFrame.setVisible(true)
       }

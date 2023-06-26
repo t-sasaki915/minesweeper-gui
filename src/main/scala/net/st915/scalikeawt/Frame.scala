@@ -6,5 +6,6 @@ case class Frame[Model, Msg](
   title: String,
   size: Dimension,
   mainMenu: Option[MenuBar[Model, Msg]] = None,
-  closable: Boolean = true
+  resizable: Boolean = true,
+  onCloseButtonClick: Msg
 )

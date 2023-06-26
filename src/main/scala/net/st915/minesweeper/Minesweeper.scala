@@ -20,6 +20,8 @@ object Minesweeper extends ScalikeAwtApp[Model, Msg] {
     Frame(
       title = s"Minesweeper - ${model.difficulty.name}",
       size = Dimension(300, 400),
+      resizable = false,
+      onCloseButtonClick = Msg.Exit,
       mainMenu = Some {
         import net.st915.scalikeawt.menus.dsl.*
 
