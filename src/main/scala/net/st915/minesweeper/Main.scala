@@ -26,16 +26,62 @@ object Main extends ScalikeAwtApp[Model, Msg] {
         Coordinate(0, 0) -> {
           import net.st915.scalikeawt.graphics.dsl.*
 
-          canvas[Model, Msg](Dimension(30, 30))(
-            Image.MineIcon.draw: _*
-          )
+          canvas[Model, Msg](Dimension(30, 30))(Images.mineIcon: _*)
         },
         Coordinate(30, 0) -> {
           import net.st915.scalikeawt.graphics.dsl.*
 
-          canvas[Model, Msg](Dimension(22, 22))(
-            Image.FlagIcon.draw: _*
-          )
+          canvas[Model, Msg](Dimension(22, 22))(Images.flagIcon: _*)
+        },
+        Coordinate(52, 0) -> {
+          import net.st915.scalikeawt.graphics.dsl.*
+
+          canvas[Model, Msg](Dimension(22, 22))(Images.fakeFlagIcon: _*)
+        },
+        Coordinate(74, 0) -> {
+          import net.st915.scalikeawt.graphics.dsl.*
+
+          canvas[Model, Msg](Dimension(22, 22))(Images.wrongFlagIcon: _*)
+        },
+        Coordinate(0, 30) -> {
+          import net.st915.scalikeawt.graphics.dsl.*
+
+          canvas[Model, Msg](Dimension(30, 30))(Images.numIcon(1): _*)
+        },
+        Coordinate(30, 30) -> {
+          import net.st915.scalikeawt.graphics.dsl.*
+
+          canvas[Model, Msg](Dimension(30, 30))(Images.numIcon(2): _*)
+        },
+        Coordinate(60, 30) -> {
+          import net.st915.scalikeawt.graphics.dsl.*
+
+          canvas[Model, Msg](Dimension(30, 30))(Images.numIcon(3): _*)
+        },
+        Coordinate(90, 30) -> {
+          import net.st915.scalikeawt.graphics.dsl.*
+
+          canvas[Model, Msg](Dimension(30, 30))(Images.numIcon(4): _*)
+        },
+        Coordinate(0, 60) -> {
+          import net.st915.scalikeawt.graphics.dsl.*
+
+          canvas[Model, Msg](Dimension(30, 30))(Images.numIcon(5): _*)
+        },
+        Coordinate(30, 60) -> {
+          import net.st915.scalikeawt.graphics.dsl.*
+
+          canvas[Model, Msg](Dimension(30, 30))(Images.numIcon(6): _*)
+        },
+        Coordinate(60, 60) -> {
+          import net.st915.scalikeawt.graphics.dsl.*
+
+          canvas[Model, Msg](Dimension(30, 30))(Images.numIcon(7): _*)
+        },
+        Coordinate(90, 60) -> {
+          import net.st915.scalikeawt.graphics.dsl.*
+
+          canvas[Model, Msg](Dimension(30, 30))(Images.numIcon(8): _*)
         }
       ),
       mainMenu = Some {
