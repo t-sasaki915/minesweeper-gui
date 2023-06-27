@@ -7,6 +7,47 @@ object Images {
 
   import net.st915.scalikeawt.graphics.dsl.*
 
+  val notOpenedCell: List[Element] =
+    List(
+      polygon(Color.White)(
+        Coordinate(0, 0),
+        Coordinate(32, 0),
+        Coordinate(27, 5),
+        Coordinate(0, 5)
+      ),
+      polygon(Color.White)(
+        Coordinate(0, 5),
+        Coordinate(0, 32),
+        Coordinate(5, 27),
+        Coordinate(5, 5)
+      ),
+      polygon(Color.fromRGB(160, 160, 160))(
+        Coordinate(0, 32),
+        Coordinate(32, 32),
+        Coordinate(32, 27),
+        Coordinate(5, 27)
+      ),
+      polygon(Color.fromRGB(160, 160, 160))(
+        Coordinate(32, 0),
+        Coordinate(32, 27),
+        Coordinate(27, 27),
+        Coordinate(27, 5)
+      ),
+      rect(Coordinate(5, 5), Dimension(22, 22), Color.fromRGB(187, 187, 187))
+    )
+
+  val openedCell: List[Element] =
+    List(
+      rect(Coordinate(0, 0), Dimension(32, 32), Color.fromRGB(133, 133, 133)),
+      rect(Coordinate(1, 1), Dimension(30, 30), Color.fromRGB(192, 192, 192))
+    )
+
+  val redCell: List[Element] =
+    List(
+      rect(Coordinate(0, 0), Dimension(32, 32), Color.fromRGB(133, 133, 133)),
+      rect(Coordinate(1, 1), Dimension(30, 30), Color.Red)
+    )
+
   val mineIcon: List[Element] =
     List(
       circle(Coordinate(15, 15), 11),
