@@ -42,160 +42,178 @@ object Images {
       rect(Coordinate(1, 1), Dimension(30, 30), Color.fromRGB(192, 192, 192))
     )
 
-  val redCell: List[Element] =
+  private val redCell: List[Element] =
     List(
       rect(Coordinate(0, 0), Dimension(32, 32), Color.fromRGB(133, 133, 133)),
       rect(Coordinate(1, 1), Dimension(30, 30), Color.Red)
     )
 
-  val mineIcon: List[Element] =
+  private val mineIcon: List[Element] =
     List(
-      circle(Coordinate(15, 15), 11),
-      rect(Coordinate(14, 0), Dimension(2, 30)),
-      rect(Coordinate(0, 14), Dimension(30, 2)),
+      circle(Coordinate(16, 16), 11),
+      rect(Coordinate(15, 1), Dimension(2, 30)),
+      rect(Coordinate(1, 15), Dimension(30, 2)),
       polygon()(
-        Coordinate(5, 6),
-        Coordinate(6, 5),
-        Coordinate(25, 24),
-        Coordinate(24, 25)
+        Coordinate(6, 7),
+        Coordinate(7, 6),
+        Coordinate(26, 25),
+        Coordinate(25, 26)
       ),
       polygon()(
+        Coordinate(26, 7),
         Coordinate(25, 6),
-        Coordinate(24, 5),
-        Coordinate(5, 24),
-        Coordinate(6, 25)
+        Coordinate(6, 25),
+        Coordinate(7, 26)
       )
     )
 
-  val flagIcon: List[Element] =
+  private val flagIcon: List[Element] =
     List(
       polygon()(
-        Coordinate(0, 22),
-        Coordinate(5, 15),
-        Coordinate(17, 15),
-        Coordinate(22, 22)
+        Coordinate(5, 27),
+        Coordinate(10, 20),
+        Coordinate(22, 20),
+        Coordinate(27, 27)
       ),
-      rect(Coordinate(10, 1), Dimension(2, 14)),
+      rect(Coordinate(15, 6), Dimension(2, 14)),
       polygon(Color.Red)(
-        Coordinate(10, 1),
-        Coordinate(10, 10),
-        Coordinate(1, 5)
+        Coordinate(15, 6),
+        Coordinate(15, 15),
+        Coordinate(6, 10)
       )
     )
 
-  val fakeFlagIcon: List[Element] =
+  private val fakeFlagIcon: List[Element] =
     List(
       polygon(Color.Gray)(
-        Coordinate(0, 22),
-        Coordinate(5, 15),
-        Coordinate(17, 15),
-        Coordinate(22, 22)
+        Coordinate(5, 27),
+        Coordinate(10, 20),
+        Coordinate(22, 20),
+        Coordinate(27, 27)
       ),
-      rect(Coordinate(10, 1), Dimension(2, 14), Color.Gray),
+      rect(Coordinate(15, 6), Dimension(2, 14), Color.Gray),
       polygon(Color.Gray)(
-        Coordinate(10, 1),
-        Coordinate(10, 10),
-        Coordinate(1, 5)
+        Coordinate(15, 6),
+        Coordinate(15, 15),
+        Coordinate(6, 10)
       )
     )
 
-  val wrongFlagIcon: List[Element] =
+  private val wrongFlagIcon: List[Element] =
     List(
       polygon()(
-        Coordinate(0, 22),
-        Coordinate(5, 15),
-        Coordinate(17, 15),
-        Coordinate(22, 22)
+        Coordinate(5, 27),
+        Coordinate(10, 20),
+        Coordinate(22, 20),
+        Coordinate(27, 27)
       ),
-      rect(Coordinate(10, 1), Dimension(2, 14)),
+      rect(Coordinate(15, 6), Dimension(2, 14)),
       polygon(Color.Red)(
-        Coordinate(10, 1),
-        Coordinate(10, 10),
-        Coordinate(1, 5)
-      ),
-      polygon(Color.Red)(
-        Coordinate(2, 0),
-        Coordinate(0, 0),
-        Coordinate(20, 22),
-        Coordinate(22, 22)
+        Coordinate(15, 6),
+        Coordinate(15, 15),
+        Coordinate(6, 10)
       ),
       polygon(Color.Red)(
-        Coordinate(0, 22),
-        Coordinate(2, 22),
-        Coordinate(22, 0),
-        Coordinate(20, 0)
+        Coordinate(7, 5),
+        Coordinate(5, 5),
+        Coordinate(25, 27),
+        Coordinate(27, 27)
+      ),
+      polygon(Color.Red)(
+        Coordinate(5, 27),
+        Coordinate(7, 27),
+        Coordinate(27, 5),
+        Coordinate(25, 5)
       )
     )
 
-  def numIcon(n: Int): List[Element] =
+  private def numIcon(n: Int): List[Element] =
     n match
       case 1 =>
         List(
-          rect(Coordinate(13, 2), Dimension(5, 21), Color.fromRGB(2, 0, 249)),
-          rect(Coordinate(5, 23), Dimension(20, 5), Color.fromRGB(2, 0, 249)),
-          rect(Coordinate(6, 7), Dimension(7, 5), Color.fromRGB(2, 0, 249))
+          rect(Coordinate(14, 3), Dimension(5, 21), Color.fromRGB(2, 0, 249)),
+          rect(Coordinate(6, 24), Dimension(20, 5), Color.fromRGB(2, 0, 249)),
+          rect(Coordinate(7, 8), Dimension(7, 5), Color.fromRGB(2, 0, 249))
         )
 
       case 2 =>
         List(
-          rect(Coordinate(5, 2), Dimension(20, 5), Color.fromRGB(0, 128, 1)),
-          rect(Coordinate(20, 7), Dimension(5, 6), Color.fromRGB(0, 128, 1)),
-          rect(Coordinate(5, 13), Dimension(20, 5), Color.fromRGB(0, 128, 1)),
-          rect(Coordinate(5, 18), Dimension(5, 5), Color.fromRGB(0, 128, 1)),
-          rect(Coordinate(5, 23), Dimension(20, 5), Color.fromRGB(0, 128, 1))
+          rect(Coordinate(6, 3), Dimension(20, 5), Color.fromRGB(0, 128, 1)),
+          rect(Coordinate(21, 8), Dimension(5, 6), Color.fromRGB(0, 128, 1)),
+          rect(Coordinate(6, 14), Dimension(20, 5), Color.fromRGB(0, 128, 1)),
+          rect(Coordinate(6, 19), Dimension(5, 5), Color.fromRGB(0, 128, 1)),
+          rect(Coordinate(6, 24), Dimension(20, 5), Color.fromRGB(0, 128, 1))
         )
 
       case 3 =>
         List(
-          rect(Coordinate(5, 2), Dimension(20, 5), Color.fromRGB(253, 1, 0)),
-          rect(Coordinate(20, 7), Dimension(5, 6), Color.fromRGB(253, 1, 0)),
-          rect(Coordinate(5, 13), Dimension(20, 5), Color.fromRGB(253, 1, 0)),
-          rect(Coordinate(20, 18), Dimension(5, 5), Color.fromRGB(253, 1, 0)),
-          rect(Coordinate(5, 23), Dimension(20, 5), Color.fromRGB(253, 1, 0))
+          rect(Coordinate(6, 3), Dimension(20, 5), Color.fromRGB(253, 1, 0)),
+          rect(Coordinate(21, 8), Dimension(5, 6), Color.fromRGB(253, 1, 0)),
+          rect(Coordinate(6, 14), Dimension(20, 5), Color.fromRGB(253, 1, 0)),
+          rect(Coordinate(21, 19), Dimension(5, 5), Color.fromRGB(253, 1, 0)),
+          rect(Coordinate(6, 24), Dimension(20, 5), Color.fromRGB(253, 1, 0))
         )
 
       case 4 =>
         List(
-          rect(Coordinate(5, 2), Dimension(5, 11), Color.fromRGB(1, 0, 128)),
-          rect(Coordinate(20, 2), Dimension(5, 26), Color.fromRGB(1, 0, 128)),
-          rect(Coordinate(5, 13), Dimension(15, 5), Color.fromRGB(1, 0, 128))
+          rect(Coordinate(6, 3), Dimension(5, 11), Color.fromRGB(1, 0, 128)),
+          rect(Coordinate(21, 3), Dimension(5, 26), Color.fromRGB(1, 0, 128)),
+          rect(Coordinate(6, 14), Dimension(15, 5), Color.fromRGB(1, 0, 128))
         )
 
       case 5 =>
         List(
-          rect(Coordinate(5, 2), Dimension(20, 5), Color.fromRGB(128, 0, 2)),
-          rect(Coordinate(5, 7), Dimension(5, 6), Color.fromRGB(128, 0, 2)),
-          rect(Coordinate(5, 13), Dimension(20, 5), Color.fromRGB(128, 0, 2)),
-          rect(Coordinate(20, 18), Dimension(5, 5), Color.fromRGB(128, 0, 2)),
-          rect(Coordinate(5, 23), Dimension(20, 5), Color.fromRGB(128, 0, 2))
+          rect(Coordinate(6, 3), Dimension(20, 5), Color.fromRGB(128, 0, 2)),
+          rect(Coordinate(6, 8), Dimension(5, 6), Color.fromRGB(128, 0, 2)),
+          rect(Coordinate(6, 14), Dimension(20, 5), Color.fromRGB(128, 0, 2)),
+          rect(Coordinate(21, 19), Dimension(5, 5), Color.fromRGB(128, 0, 2)),
+          rect(Coordinate(6, 24), Dimension(20, 5), Color.fromRGB(128, 0, 2))
         )
 
       case 6 =>
         List(
-          rect(Coordinate(5, 2), Dimension(20, 5), Color.fromRGB(0, 129, 124)),
-          rect(Coordinate(5, 7), Dimension(5, 16), Color.fromRGB(0, 129, 124)),
-          rect(Coordinate(10, 13), Dimension(15, 5), Color.fromRGB(0, 129, 124)),
-          rect(Coordinate(20, 18), Dimension(5, 5), Color.fromRGB(0, 129, 124)),
-          rect(Coordinate(5, 23), Dimension(20, 5), Color.fromRGB(0, 129, 124))
+          rect(Coordinate(6, 3), Dimension(20, 5), Color.fromRGB(0, 129, 124)),
+          rect(Coordinate(6, 8), Dimension(5, 16), Color.fromRGB(0, 129, 124)),
+          rect(Coordinate(11, 14), Dimension(15, 5), Color.fromRGB(0, 129, 124)),
+          rect(Coordinate(21, 19), Dimension(5, 5), Color.fromRGB(0, 129, 124)),
+          rect(Coordinate(6, 24), Dimension(20, 5), Color.fromRGB(0, 129, 124))
         )
 
       case 7 =>
         List(
-          rect(Coordinate(5, 2), Dimension(20, 5), Color.Black),
-          rect(Coordinate(5, 7), Dimension(5, 6), Color.Black),
-          rect(Coordinate(20, 7), Dimension(5, 21), Color.Black)
+          rect(Coordinate(6, 3), Dimension(20, 5), Color.Black),
+          rect(Coordinate(6, 8), Dimension(5, 6), Color.Black),
+          rect(Coordinate(21, 8), Dimension(5, 21), Color.Black)
         )
 
       case 8 =>
         List(
-          rect(Coordinate(10, 2), Dimension(10, 5), Color.fromRGB(128, 128, 128)),
-          rect(Coordinate(10, 13), Dimension(10, 5), Color.fromRGB(128, 128, 128)),
-          rect(Coordinate(5, 2), Dimension(5, 26), Color.fromRGB(128, 128, 128)),
-          rect(Coordinate(20, 2), Dimension(5, 26), Color.fromRGB(128, 128, 128)),
-          rect(Coordinate(10, 23), Dimension(10, 5), Color.fromRGB(128, 128, 128))
+          rect(Coordinate(11, 3), Dimension(10, 5), Color.fromRGB(128, 128, 128)),
+          rect(Coordinate(11, 14), Dimension(10, 5), Color.fromRGB(128, 128, 128)),
+          rect(Coordinate(6, 3), Dimension(5, 26), Color.fromRGB(128, 128, 128)),
+          rect(Coordinate(21, 3), Dimension(5, 26), Color.fromRGB(128, 128, 128)),
+          rect(Coordinate(11, 24), Dimension(10, 5), Color.fromRGB(128, 128, 128))
         )
 
       case _ =>
         Nil
+
+  val notOpenedCellWithFlag: List[Element] =
+    notOpenedCell ++ flagIcon
+
+  val notOpenedCellWithFakeFlag: List[Element] =
+    notOpenedCell ++ fakeFlagIcon
+
+  val notOpenedCellWithWrongFlag: List[Element] =
+    notOpenedCell ++ wrongFlagIcon
+
+  val openedCellWithMine: List[Element] =
+    openedCell ++ mineIcon
+
+  val causeCell: List[Element] =
+    redCell ++ mineIcon
+
+  def openedCellWithNumber(n: Int): List[Element] =
+    openedCell ++ numIcon(n)
 
 }

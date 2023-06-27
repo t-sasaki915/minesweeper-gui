@@ -31,12 +31,37 @@ object Main extends ScalikeAwtApp[Model, Msg] {
         Coordinate(32, 0) -> {
           import net.st915.scalikeawt.graphics.dsl.*
 
-          canvas[Model, Msg](Dimension(32, 32))(Images.openedCell: _*)
+          canvas[Model, Msg](Dimension(32, 32))(Images.notOpenedCellWithFlag: _*)
         },
         Coordinate(64, 0) -> {
           import net.st915.scalikeawt.graphics.dsl.*
 
-          canvas[Model, Msg](Dimension(32, 32))(Images.redCell: _*)
+          canvas[Model, Msg](Dimension(32, 32))(Images.notOpenedCellWithFakeFlag: _*)
+        },
+        Coordinate(96, 0) -> {
+          import net.st915.scalikeawt.graphics.dsl.*
+
+          canvas[Model, Msg](Dimension(32, 32))(Images.notOpenedCellWithWrongFlag: _*)
+        },
+        Coordinate(0, 32) -> {
+          import net.st915.scalikeawt.graphics.dsl.*
+
+          canvas[Model, Msg](Dimension(32, 32))(Images.openedCell: _*)
+        },
+        Coordinate(32, 32) -> {
+          import net.st915.scalikeawt.graphics.dsl.*
+
+          canvas[Model, Msg](Dimension(32, 32))(Images.openedCellWithMine: _*)
+        },
+        Coordinate(64, 32) -> {
+          import net.st915.scalikeawt.graphics.dsl.*
+
+          canvas[Model, Msg](Dimension(32, 32))(Images.causeCell: _*)
+        },
+        Coordinate(96, 32) -> {
+          import net.st915.scalikeawt.graphics.dsl.*
+
+          canvas[Model, Msg](Dimension(32, 32))(Images.openedCellWithNumber(8): _*)
         }
       ),
       mainMenu = Some {
